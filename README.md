@@ -1,1 +1,0 @@
-# Staircase_Function
