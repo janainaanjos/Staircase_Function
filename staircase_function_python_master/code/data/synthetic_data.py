@@ -2,7 +2,7 @@
 Synthetic data test 
 
 Python script to generate the synthetic results. The script loads the total-field anomaly of a synthetic model from the file "synthetic_data.dat"
-and computes the non-regularized and regularized directional derivatives, S-function, S-function values linear model, analytical signal 
+and computes the non-regularized and regularized directional derivatives, S-function, regularization parameters, analytical signal 
 amplitude, and tilt derivative using the functions in "filtering.py". The figures are generated using the function "plot_figure.py".
 
 This code is released from the paper: Python programs to apply regularized derivatives in the magnetic tilt derivative and gradient intensity data 
@@ -76,15 +76,15 @@ alpha_test = 10**(l[:])
 norm_sol_dx, norm_sol_dy, norm_sol_dz = s_function(x, y, tfa, shape, alpha_test, order=1)
 
 '''The user establishes the interval limits in which the S-function presents a linear variation to determine the regularization parameter 
-associated with the Euclidean norm equal to 0.5.'''
-
+associated with the Euclidean norm value equal to 0.5, for example.'''
+value_norm = 0.5
 upper_limit = 0.7
 inferior_limit = 0.45
 
 # Determines the regularization parameters of the directional derivatives
-alpha_x = linear_regression(norm_sol_dx, alpha_test, upper_limit, inferior_limit)
-alpha_y = linear_regression(norm_sol_dy, alpha_test, upper_limit, inferior_limit)
-alpha_z = linear_regression(norm_sol_dz, alpha_test, upper_limit, inferior_limit)
+alpha_x = regularization_parameter(norm_sol_dx, alpha_test, upper_limit, inferior_limit, value_norm)
+alpha_y = regularization_parameter(norm_sol_dy, alpha_test, upper_limit, inferior_limit, value_norm)
+alpha_z = regularization_parameter(norm_sol_dz, alpha_test, upper_limit, inferior_limit, value_norm)
 
 alpha_vector = [alpha_x, alpha_y, alpha_z]
 

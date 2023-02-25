@@ -1,6 +1,6 @@
 """
-A Python program evaluates the non-regularized and regularized directional derivatives, S-function, S-function values linear model, analytical 
-signal amplitude, and tilt derivative on gridded data.
+A Python program evaluates the non-regularized and regularized directional derivatives and S-function, estimates regularization parameters, and 
+computes analytical signal amplitude and tilt derivative on gridded data.
 
 This code is released from the paper: Python programs to apply regularized derivatives in the magnetic tilt derivative and gradient intensity data 
 processing: a graphical procedure to choose the regularization parameter.
@@ -206,7 +206,8 @@ def regularized_derivative(x, y, data, shape, order, alpha):
 def s_function(x, y, data, shape, alpha, order):
 
     """
-    Computes the normalized Euclidean norm of the directional derivatives to different regularization parameter values using equations 6 and 7 of the paper.
+    Computes the normalized Euclidean norm of the directional derivatives to different regularization parameter values using equations 
+    6 and 7 of the paper.
 
     Parameters:
 
@@ -269,11 +270,12 @@ def s_function(x, y, data, shape, alpha, order):
 
 
 
-def linear_regression(norm_sol, alpha_test, upper_limit, inferior_limit):
+def regularization_parameter(norm_sol, alpha_test, upper_limit, inferior_limit, value_norm):
 
     """
-    Fits a linear approximation to the S-function in an interval [inferior limit, upper limit] that contains the regularization parameter associated with the 
-    Euclidean norm equal to 0.5.
+    Determines the regularization parameter associated with a Euclidean norm-specific value located in the S-function sloped portion. 
+    As the S-function is evaluated for regularization parameter discrete values, it is fitted a linear approximation in the S-function 
+    sloped portion considering a specific interval [inferior limit, upper limit].
 
     Parameters:
 
@@ -282,13 +284,15 @@ def linear_regression(norm_sol, alpha_test, upper_limit, inferior_limit):
     * alpha_test: 1D-array
         Trial regularization parameters
     * upper_limit: float
-        Upper limit established by the user
+        Upper limit of the S-function's linear variation interval 
     * inferior_limit: float
-        Inferior limit established by the user
+        Inferior limit of the S-function's linear variation interval 
+    * value_norm: float
+        Euclidean norm-specific value
     Returns:
 
     * alpha_value: float
-        regularization parameter associate to Euclidean norm equal to 0.5
+        regularization parameter associate with Euclidean norm-specific value
     """
 
     norm = []
@@ -310,8 +314,8 @@ def linear_regression(norm_sol, alpha_test, upper_limit, inferior_limit):
     a = linreg.coef_
     b = linreg.intercept_
 
-    # Calculates the regularization parameter associate to Euclidean norm equal to 0.5
-    alpha_value = np.log10((0.5 - b)/a)
+    # Calculates the regularization parameter associate with Euclidean norm-specific value
+    alpha_value = np.log10((value_norm - b)/a)
 
     return alpha_value
 

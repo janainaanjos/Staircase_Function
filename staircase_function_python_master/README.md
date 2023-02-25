@@ -19,23 +19,22 @@ The Tikhonov regularization parameter is a key parameter conditioning the smooth
 
 - filtering.py:
 	General Python module containing the functions to compute the non-regularized and 
-        regularized directional derivatives, S-function, S-function values linear model, 
+        regularized directional derivatives, S-function, regularization parameters, 
         analytical signal amplitude and tilt derivative.
 	
 - synthetic_data.py:
 	Python script to generate the synthetic results. The script loads the total-field 
 	anomaly of a synthetic model from the file "synthetic_data.dat" and computes the 
-	non-regularized and regularized directional derivatives, S-function, S-function 
-	values linear model, analytical signal amplitude and tilt derivative using the 
-	functions in "filtering.py". The figures are generated using the function 
-	"plot_figure.py". 
+	non-regularized and regularized directional derivatives, S-function, regularization
+        parameters, analytical signal amplitude and tilt derivative using the functions
+	in "filtering.py". The figures are generated using the function "plot_figure.py". 
 
 - real_data.py:
 	Python script to generate the real results. The script loads the total-field 
 	anomaly of a real data from the file "real_data.xyz" and computes the 
-	non-regularized and regularized directional derivatives, S-function, S-function 
-	values linear model, analytical signal amplitude and tilt derivative using the 
-	functions in "filtering.py". The figures are generated using the function 
+	non-regularized and regularized directional derivatives, S-function, 
+        regularization parameters, analytical signal amplitude and tilt derivative using 
+        the functions in "filtering.py". The figures are generated using the function 
 	"plot_figure.py". 
 	
 - plot_figure.py:
