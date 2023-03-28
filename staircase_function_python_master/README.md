@@ -5,7 +5,7 @@ Janaína A. Melo, Carlos A. Mendonça and Yara R. Marangoni
 
 ## About
 
-This paper has been published in the *Computers & Geosciences*. Melo, J.A., Mendonça, C.A, Marangoni, Y.R., 2023. Python programs to apply regularized derivatives in the magnetic tilt derivative and gradient intensity data processing: a graphical procedure to choose the regularization parameter. Computers & Geosciences.
+This paper has been submitted in the *Applied Computing and Geosciences*. Melo, J.A., Mendonça, C.A, Marangoni, Y.R., 2023. Python programs to apply regularized derivatives in the magnetic tilt derivative and gradient intensity data processing: a graphical procedure to choose the regularization parameter.
 
 This repository contains the source code to perform the synthetic test and real data presented. The codes 'filtering.py', 'synthetic_data.py', 'real_data.py', and  'plot_figure.py' generate the results related to our methodology.
 
@@ -101,4 +101,4 @@ to the authors. See 'LICENSE.md' for the full license text.
 
 The manuscript text is not open source. The authors reserve the rights to 
 the article content, which is currently submitted for publication in the
-*Computers & Geosciences*.
+*Applied Computing and Geosciences*.
