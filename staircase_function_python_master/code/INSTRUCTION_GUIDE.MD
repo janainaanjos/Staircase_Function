@@ -26,6 +26,7 @@ This repository contains several Python codes and synthetic and real data exampl
 ----------------------
 The Tikhonov regularization parameter is a key parameter conditioning the smoothness degree of model parameters and associated model response in regularized inversion. Usual methods to determine a proper parameter (L-curve or the discrepancy principle, for example) are not readily applicable to the evaluation of regularized derivatives, since this formulation does not make explicit a set of model parameters that are necessary to implement these methods. We develop a procedure for the determination of the regularization parameter based on the graphical construction of a characteristic “staircase” function associated with the Euclidean norm of the regularized derivatives for a set of trial regularization parameters. This function is independent of model parameters and presents a smooth and monotonic variation. The regularization parameters at the upper step (low values) of the ''staircase'' function provide equivalent results to the non-regularized derivative, the parameters at the lower step (high values) leading to over-smoothed derivatives.  For the evaluated data sets, the proper regularization parameter is located in the slope connecting these two flat end-members of the staircase curve, thus balancing noise amplification against the amplitude loss in the transformed fields. A set of Python programs are presented to evaluate the regularization procedure in a well-known synthetic model composed of multiple (bulk and elongated) magnetic sources. This numerical approach also is applied in gridded aeromagnetic data covering high-grade metamorphic terrains of the Anápolis-Itauçu Complex in the Brasília Fold Belt central portion of Tocantins Province, central Brazil, characterized by multiple magnetic lineaments with different directions and intersections which are associated with shear zones, geologic faults, and intrusive bodies. The results obtained from the regularization procedure show efficiency in improving the maps of filtered fields, better tracking the continuity of magnetic lineaments and general geological trends. The results from the application in the Brasília Fold Belt enhance the importance and broader coverage of Pirineus Zone of High Strain.
 
+
 2 - Content
 ----------------------
 
@@ -33,22 +34,24 @@ Python codes:
 
 	- filtering.py:
 		General Python module containing the functions to compute the non-regularized and 
-        	regularized directional derivatives, S-function, regularization parameters, and 
-        	analytical signal amplitude and tilt derivative.
+        	regularized directional first-order derivatives, S-function of the regularized 
+		directional first-order derivatives, regularization parameters, analytical signal 
+		amplitude and tilt derivative.
 	
 	- synthetic_data.py:
 		Python script to generate the synthetic results. The script loads the total-field 
 		anomaly of a synthetic model from the file "synthetic_data.dat" and computes the 
-		non-regularized and regularized directional derivatives, S-function, regularization
-		parameters, analytical signal amplitude and tilt derivative using the functions
-		in "filtering.py". The figures are generated using the function	"plot_figure.py". 
+		non-regularized and regularized first-order derivatives, S-function of the regularized 
+		first-order derivatives, regularization parameters, analytical signal amplitude and 
+		tilt derivative using the functions in "filtering.py". The figures are generated using 
+		the function "plot_figure.py". 
 
 	- real_data.py:
 		Python script to generate the real results. The script loads the total-field 
-		anomaly of a real data from the file "real_data.xyz" and computes the 
-		non-regularized and regularized directional derivatives, S-function,
-                regularization parameters, analytical signal amplitude and tilt derivative using 
-                the functions in "filtering.py". The figures are generated using the function 
+		anomaly of a real data from the file "real_data.xyz" and computes the non-regularized 
+		and regularized first-order derivatives, S-function of the regularized first-order 
+		derivatives, regularization parameters, analytical signal amplitude and tilt derivative 
+		using the functions in "filtering.py". The figures are generated using the function 
 		"plot_figure.py". 
 	
 	- plot_figure.py:
@@ -87,6 +90,7 @@ Complementary files:
 		    x and y coordinates of the sill vertices to plot on synthetic data 
 		    figures.
 
+
 3 - Prerequisites
 ----------------------
 The Python program "filtering.py" requires the Python packages "numpy" and "sklearn.linear_model", and 
@@ -96,7 +100,8 @@ The easier way to get Python and all libraries installed is through the Anaconda
 distribution (https://www.anaconda.com/distribution/). After installed Anaconda, install the libraries 
 by running the following command in your terminal:
 
-	conda install numpy matplotlib
+	conda install numpy matplotlib sklearn.linear_model
+
  
 4 - Parameterization
 ----------------------
@@ -104,9 +109,11 @@ To construct the S-function, the user must configure the parameter 'alpha_test' 
 to the variation range of the trial regularization parameters to calculate the Euclidean norm of 
 the regularized derivatives.
 
-To determine the regularization parameter associated with the Euclidean norm specific-value, the 
-user must configure two parameters: 'inferior_limit' and 'upper_limit'. These parameters represent 
-the interval limits in which the S-function presents a linear variation.
+To determine the regularization parameter associated with the Euclidean norm specific-value in 
+the slope of the S-function, the user must configure two parameters: 'inferior_limit' and 
+'upper_limit'. These parameters represent the interval limits in which the S-function presents a 
+linear variation.
+
 
 5 - Running the files
 ----------------------
